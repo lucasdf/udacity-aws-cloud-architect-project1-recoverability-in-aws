@@ -22,6 +22,9 @@ These are the private subnets route tables. Traffic is restricted. (primary subn
 ![primary private subnet 1](./submission/primary_private_subnet_1.png)
 ![primary private subnet 2](./submission/primary_private_subnet_2.png)
 
+Subnet group:
+![primary subnet group](./submission/primaryDB_subnetgroup.png)
+
 It has a Multi AZ deployment.
 ![primary db multiaz](./submission/primary_db_config_2.png)
 
@@ -38,6 +41,10 @@ It is configured as a read replica from the primary DB.
 These are the private subnets route tables. Traffic is restricted. (secondary subnet routing)
 ![secondary private subnet 1](./submission/secondary_private_subnet_1.png)
 ![secondary private subnet 2](./submission/secondary_private_subnet_2.png)
+
+Subnet group:
+![secondary subnet group](./submission/secondaryDB_subnetgroup.png)
+
 
 ## Manage applications in AWS
 ### SWBAT predict the availability of a configuration
