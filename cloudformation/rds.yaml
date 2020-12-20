@@ -39,6 +39,7 @@ Resources:
       Engine: MySQL
       MasterUsername: !Sub ${MasterUsername}
       MasterUserPassword: !Sub ${MasterPassword}
+      MultiAZ: True
 
 Outputs:
   SubnetGroup:
