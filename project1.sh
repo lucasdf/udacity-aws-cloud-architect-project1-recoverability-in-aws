@@ -4,11 +4,12 @@ set -euo pipefail
 
 source check_status.sh
 
-version="1"
+version="0"
 account_number=$(aws sts get-caller-identity | jq .Account --raw-output)
 primary_region="us-east-1"
 secondary_region="us-east-2"
-# these should come from a script argument or a temporary env variable
+# these should come from the script argument, a temporary env variable
+# or use some AWS solution like AWS Secrets Manager
 db_username=dbuser
 db_password=dbpassword
 
