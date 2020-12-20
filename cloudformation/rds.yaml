@@ -1,0 +1,46 @@
+Description: Primary RDS template
+
+Parameters:
+  VpcStackName:
+    Description: Name of the VPC stack to retrieve subnet configurations
+    Type: String
+  DBInstanceIdentifier:
+    Description: RDS DB instance name
+    Type: String
+  DBName:
+    Description: Default database name
+    Type: String
+    Default: udacity
+  MasterUsername:
+    Type: String
+  MasterPassword:
+    Type: String
+    NoEcho: True
+
+Resources:
+  DBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: "subnet"
+      SubnetIds: 
+        Fn::Split:
+        - ","
+        - Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnets"
+  MySQL:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      VPCSecurityGroups:
+        - Fn::ImportValue: !Sub "${VpcStackName}-DatabaseSecurityGroup"
+      DBSubnetGroupName: !Ref DBSubnetGroup
+      DBName: !Sub ${DBName}
+      DBInstanceIdentifier: !Sub ${DBInstanceIdentifier}
+      AllocatedStorage: 5
+      DBInstanceClass: db.t2.small
+      Engine: MySQL
+      MasterUsername: !Sub ${MasterUsername}
+      MasterUserPassword: !Sub ${MasterPassword}
+
+Outputs:
+  SubnetGroup:
+    Description: Subnet group id
+    Value: !Ref DBSubnetGroup
