@@ -26,7 +26,7 @@ function verify_stack_creation() {
       *)
         n=$((n+1))
         sleep_for=$((n+10))
-        echo "Retry. Sleeping for $sleep_for"
+        echo "Retry. Sleeping for $sleep_for seconds"
         sleep $sleep_for
         ;;
     esac

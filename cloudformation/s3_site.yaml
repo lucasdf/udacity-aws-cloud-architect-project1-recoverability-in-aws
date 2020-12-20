@@ -17,10 +17,9 @@ Resources:
         Status: Enabled
   BucketPolicy:
     Type: AWS::S3::BucketPolicy
+    Description: Bucket policy allowing public access.
     Properties:
       PolicyDocument:
-        Id: MyPolicy
-        Version: 2012-10-17
         Statement:
           - Sid: PublicReadForGetBucketObjects
             Effect: Allow
