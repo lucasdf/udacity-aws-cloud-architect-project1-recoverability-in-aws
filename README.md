@@ -1,5 +1,7 @@
 # udacity-aws-cloud-architect-project1-recoverability-in-aws
 
+You can run `./project1-vpc-rds.sh` to deploy the VPCs and RDSs.
+
 ## Relational Database Resilience
 
 ### SWBAT build networks that will continue to operate through the loss of a single data center
@@ -52,6 +54,21 @@ See [before promotion](./submission/rr_before_promotion.png) and [after promotio
 
 ## Website recovery
 ### SWBAT create a versioned website
+I have used the commands in `project1-static-site.sh` and the cloudformation stack `s3_site.yaml` to setup the static site.
+![s3 original](./submission/s3_original.png)
 
 ### SWBAT recover from “accidental” modification to website
+I have used the commands in `project1-static-site-error.sh` to delete and recover the objects.
 
+After accidental change:
+![s3 season](./submission/s3_season.png)
+
+After recovery:
+![s3 season revert](./submission/s3_season_revert.png)
+
+Accidental deletion:
+![s3 deletion](./submission/s3_deletion.png)
+![s3 deletion marker](./submission/s3_delete_marker.png)
+
+After recovery:
+![s3 delete revert](./submission/s3_delete_revert.png)
