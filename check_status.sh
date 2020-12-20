@@ -8,7 +8,7 @@ function verify_stack_creation() {
   local n=0
 
   echo "Verifying $stack_name in $region"
-  until [ "$n" -ge 30 ]
+  until [ "$n" -ge 60 ]
   do
     status=$(aws cloudformation describe-stacks --stack-name $stack_name --region $region | jq .Stacks[].StackStatus --raw-output)
     echo "Status $status"
