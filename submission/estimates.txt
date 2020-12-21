@@ -5,3 +5,13 @@ Minimum RTO for a single region outage: Amazon says that the promotion process t
 RPO refers to the amount of time the service might lose data in case of major problems.
 Minimum RPO for a single AZ outage: Since this configuration uses Multi-AZ, there is no RPO for a single AZ outrage. That's because write requests are synchronously replicated across multi-az replicas, which means that data is only considered written when it has been succesfully written in all the configurate availability zones (see https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html).
 Minimum RPO for a single region outage: Data replication across read replicas, including cross-region read replicas such as the one configured in this deployment, have asynchronous replication (see https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html). As such, a single region outage might cause data loss in case some of the data has not been replicated to the read replica. Since the main database has a daily backup, an outage in the region of the main database might cause a full day loss of data.
+
+Example of outage timeline:
+- 00:00 - There is a region-wide issue in the region where the main database is running.
+- 00:02 - A monitoring that verifies the number of transactions per minute reaches the two full minutes without transactions and triggers an alert, which sends messages to the on-call staff.
+- 00:03 - The on-call staff acknowledges the alert
+- 00:10 - On-call staff starts investigating the issue. He quickly sees that there is a region-wide outage.
+- 00:12 - The read replica in another region is promoted.
+- 00:20 - Applications are updated to use the promoted database in a new region.
+- 00:30 - Applications are using the database in a separate region and are fully functional.
+
